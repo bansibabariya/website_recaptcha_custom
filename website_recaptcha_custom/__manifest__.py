@@ -21,7 +21,7 @@
         'views/template.xml',
     ],
 
-    'images': ['images/OdooHelper.png'],
+    'images': ['images/OdooHelper.jpg'],
 
     'price': 22.17,
     'currency': 'USD',
