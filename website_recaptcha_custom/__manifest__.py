@@ -5,7 +5,7 @@
 {
     'name': 'Website reCAPTCHA Login/Signup/Contactus',
     'category': 'website',
-    'version': '12.0.1',
+    'version': '14.0.1',
 
     'summary': 'Website reCAPTCHA Login/Signup/Contactus',
 
@@ -21,7 +21,7 @@
         'views/template.xml',
     ],
 
-    'images': ['images/OdooHelper.png'],
+    'images': ['images/OdooHelper.jpg'],
 
     'price': 22.17,
     'currency': 'USD',

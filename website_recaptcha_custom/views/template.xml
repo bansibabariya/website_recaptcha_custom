@@ -2,7 +2,7 @@
 <odoo>
 
     <!-- reCaptcha for login -->
-	<template id="login" inherit_id="web.login" name="Login Inherit">
+    <template id="login" inherit_id="web.login" name="Login Inherit">
         <div class="form-group field-password" position="after">
             <script src='https://www.google.com/recaptcha/api.js'></script>
             <div id="captcha" class="imageContainer">
@@ -36,7 +36,7 @@
     </template>
 
     <!-- reCaptcha for signup -->
-	<template id="signup" inherit_id="auth_signup.fields" name="Signup Inherit">
+    <template id="signup" inherit_id="auth_signup.fields" name="Signup Inherit">
         <div class="form-group field-confirm_password" position="after">
             <script src='https://www.google.com/recaptcha/api.js'></script>
             <div id="captcha" class="imageContainer">
@@ -70,40 +70,42 @@
 
     <!-- reCaptcha for contactus -->
     <template id="website_captcha_contactus" inherit_id="website_crm.contactus_form" name="Contactus">
-        <xpath expr="//form/div[6]" position="after">
-           <script src='https://www.google.com/recaptcha/api.js'></script>
-            <div class="row">
-                <div class="col-lg-3 col-md-4"/>
-                <div class="col-lg-7 col-md-8 pb16">
-                    <div id="captcha" class="imageContainer">
-                <div>
-                    <p class="alert alert-danger d-none" id="reCAPTCHA">Please check the reCAPTCHA.</p>
-                    <span class="o_website_form_recaptcha" required="required"/>
+        <xpath expr="//form/div[hasclass('s_website_form_rows')]/div[6]" position="after">
+            <div class="form-group col-12 s_website_form_field s_website_form_required">
+                <div class="row s_col_no_resize s_col_no_bgcolor">
+                    <label class="col-form-label col-sm-auto s_website_form_label" style="width: 200px"/>
+                    <div class="col-sm">
+                        <script src='https://www.google.com/recaptcha/api.js'></script>
+                        <div id="captcha" class="imageContainer">
+                            <div>
+                                <p class="alert alert-danger d-none" id="reCAPTCHA">Please check the reCAPTCHA.</p>
+                                <span class="o_website_form_recaptcha" required="required"/>
+                            </div>
+                            <div class="g-recaptcha" data-sitekey="6Le5nMQUAAAAALpK02mtPPGnpjVlnq6orhz4Zj0u"
+                                 data-callback="verifyRecaptchaCallback"
+                                 data-expired-callback="expiredRecaptchaCallback"></div>
+                            <input class="form-control d-none" data-recaptcha="true"/>
+                            <div class="help-block with-errors" id="err" style='color: red' required="required"></div>
+                        </div>
+                        <script>
+                            $(".oe_signup_form").submit(function(event) {
+
+                            var recaptcha = $("#g-recaptcha-response").val();
+                            if (recaptcha === "") {
+                            event.preventDefault();
+                            $('#reCAPTCHA').removeClass('d-none');
+                            var $btn = $form.find('.oe_login_buttons > button[type="submit"]');
+                            $btn.attr('enabled', 'enabled');
+                            }
+                            else{
+                            return true;
+                            }
+                            });
+
+                        </script>
+                    </div>
                 </div>
-                <div class="g-recaptcha" data-sitekey="6Le5nMQUAAAAALpK02mtPPGnpjVlnq6orhz4Zj0u"
-                     data-callback="verifyRecaptchaCallback" data-expired-callback="expiredRecaptchaCallback"></div>
-                <input class="form-control d-none" data-recaptcha="true"/>
-                <div class="help-block with-errors" id="err" style='color: red' required="required"></div>
             </div>
-            <script>
-                $(".oe_signup_form").submit(function(event) {
-
-                var recaptcha = $("#g-recaptcha-response").val();
-                if (recaptcha === "") {
-                event.preventDefault();
-                $('#reCAPTCHA').removeClass('d-none');
-                var $btn = $form.find('.oe_login_buttons > button[type="submit"]');
-                $btn.attr('enabled', 'enabled');
-                }
-                else{
-                return true;
-                }
-                });
-
-            </script>
-                </div>
-            </div>
-
         </xpath>
     </template>
 
